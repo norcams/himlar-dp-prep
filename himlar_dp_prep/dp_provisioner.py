@@ -4,7 +4,7 @@ from keystoneclient.auth.identity import v3
 from keystoneclient import session
 from keystoneclient.v3 import client
 from grampg import PasswordGenerator
-from himlar_dp_prep.rmq import MQclient
+#from himlar_dp_prep.rmq import MQclient
 
 ADMIN_NAME = 'admin'
 PROJECT_NAME = 'admin'
@@ -48,7 +48,7 @@ class DpProvisioner(object):
             self.domain = domains[0]
         else:
             raise ValueError("Expecting unique '{}' domain".format(dp_domain_name))
-        self.rmq = MQclient(config)
+        #self.rmq = MQclient(config)
 
     def del_resources(self, user_id):
         local_users = self.ks.users.list(name=local_user_name(user_id), domain=self.domain)
@@ -119,7 +119,7 @@ class DpProvisioner(object):
                 'email': user_id,
                 'password': local_pw
             } 
-            self.rmq.push(data=data, queue='access')
+            #self.rmq.push(data=data, queue='access')
         return local_pw
 
     def get_user(self, user_id):
