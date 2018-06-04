@@ -4,6 +4,7 @@ from keystoneclient.auth.identity import v3
 from keystoneclient import session
 from keystoneclient.v3 import client
 from grampg import PasswordGenerator
+from himlar_dp_prep.rmq import MQclient
 
 ADMIN_NAME = 'admin'
 PROJECT_NAME = 'admin'
@@ -47,6 +48,7 @@ class DpProvisioner(object):
             self.domain = domains[0]
         else:
             raise ValueError("Expecting unique '{}' domain".format(dp_domain_name))
+        self.rmq = MQclient(config)
 
     def del_resources(self, user_id):
         local_users = self.ks.users.list(name=local_user_name(user_id), domain=self.domain)
@@ -107,6 +109,24 @@ class DpProvisioner(object):
             self.ks.users.add_to_group(user, group)
         return dict(local_user_name=lname,
                     local_pw=self.local_pw)
+
+    def reset(self, user_id):
+        if self.with_local_user:
+            local_pw = make_password()
+            log.info("Reset password for: %s", user_id)
+            data = {
+                'action': 'reset_password',
+                'email': user_id,
+                'password': local_pw
+            } 
+            self.rmq.push(data=data, queue='access')
+        return local_pw
+
+    def get_user(self, user_id):
+        users = self.ks.users.list(email=user_id)
+        for u in users:
+            user = self.ks.users.get(u.id)
+        return user.name
 
 if __name__ == '__main__':
     DESCRIPTION = "Dataporten provisioner for Openstack"
