@@ -14,7 +14,7 @@ requires = [
     'pyramid_mako',
 #    'pyramid_debugtoolbar',
     'authomatic',
-    'python-keystoneclient',
+    'python-keystoneclient==3.10.0',
     'waitress',
     'grampg',
     'pika==0.11.2',
