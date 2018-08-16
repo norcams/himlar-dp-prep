@@ -41,5 +41,5 @@ class MQclient(object):
                                        properties=pika.BasicProperties(
                                        delivery_mode=2))
         if result:
-	    print ('New message added to queue: ', queue)
+            print ('New message added to queue: ', queue)
 	self.close_connection()
