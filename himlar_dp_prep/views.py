@@ -116,7 +116,10 @@ class ProvisionerClient(object):
         horizon_url = self.settings.get('horizon_url', '')
         tpl = '{}/dashboard/auth/login/'
         api_pw = prov.reset(user.email) 
-        res = dict(api_user_name=user.email, api_pw=api_pw, was_provisioned=was_provisioned)
+        res = dict(api_user_name=user.email,
+		api_pw=api_pw, 
+		dashboard_url=tpl.format(horizon_url),
+		was_provisioned=was_provisioned)
         return res
 
     @view_config(route_name='reset', renderer='templates/reset.mak')
