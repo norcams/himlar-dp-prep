@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="${request.static_url('himlar_dp_prep:uninett-theme/ico/favicon.ico')}">
 
-    <title>UH IaaS via Dataporten</title>
+    <title>NREC via Dataporten</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
