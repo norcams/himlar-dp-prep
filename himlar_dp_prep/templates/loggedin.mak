@@ -2,9 +2,9 @@
 <div class="row uninett-color-white uninett-whole-row uninett-padded">
   <h2>${user.name}</h2>
 % if was_provisioned:
-  <p>UH-IaaS was already prepared for Dataporten</p>
+  <p>NREC was already prepared for Dataporten</p>
 % else:
-  <p>UH-IaaS prepared for Dataporten</p>
+  <p>NREC prepared for Dataporten</p>
 % endif
 % if api_pw:
   <h3>API access</h3>
@@ -15,7 +15,7 @@
 % endif
   <a href="${dashboard_url}" class="btn btn-default uninett-login-btn">
     <span class="glyphicon glyphicon-user uninett-fontColor-red"></span>
-    Continue to UH-IaaS
+    Continue to NREC
   </a>
   <br/>
 % if was_provisioned:

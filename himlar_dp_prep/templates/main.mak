@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="${request.static_url('himlar_dp_prep:uninett-theme/ico/favicon.ico')}">
 
-    <title>UH IaaS via Dataporten</title>
+    <title>NREC via Dataporten</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -52,7 +52,7 @@
                 <div class="footer-uninett">
                     <div class="footer-content-uninett">
                             <div class="footer-logo"> <img src="${request.static_url('himlar_dp_prep:uninett-theme/images/Uninett_pil_rod.svg')}" alt="Uninett logo" type="image/svg+xml"></div>
-                            <div class="footer-uninett-department">UNINETT AS 2018</div>
+                            <div class="footer-uninett-department">UNINETT AS 2020</div>
                     </div>
                     <div class="clearfix"></div>
                 </div>
