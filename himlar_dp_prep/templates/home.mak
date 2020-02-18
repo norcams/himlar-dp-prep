@@ -5,11 +5,11 @@
   <a href="https://www.uib.no">Univesity of Bergen</a>,
   <a href="https://www.uio.no>Univesity of Oslo">University of Oslo</a> and
   <a href="https://www.uninett.no">UNINETT</a>.
-  For more information about this service, please read our <a href="http://docs.nrec.no">documentation.</a>
+  For more information about this service, please read our <a href="https://docs.nrec.no">documentation.</a>
   </div>
   <br/>
   <h3>Terms of service</h3>
-  <div>You are required to read and understand our <a href="http://docs.nrec.no/en/latest/terms-of-service.html" target="blank">
+  <div>You are required to read and understand our <a href="https://docs.nrec.no/terms-of-service.html" target="blank">
   Terms of Service</a> before accessing NREC.
   When signing up for the service, you give us permission to collect your
   email address for the purposes stated in the terms.
