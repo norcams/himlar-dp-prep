@@ -18,6 +18,7 @@ requires = [
     'waitress',
     'grampg',
     'pika',
+    'mod_wsgi'
     ]
 
 setup(name='himlar_dp_prep',
