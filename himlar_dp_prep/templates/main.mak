@@ -30,11 +30,9 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a class="navbar-brand" href="/"><img src="${request.static_url('himlar_dp_prep:uninett-theme/images/UNINETT_logo.svg')}" alt="Uninett logo" type="image/svg+xml"></a>
+                <a class="navbar-brand" href="/"><img src="${request.static_url('himlar_dp_prep:static/nrec.svg')}" alt="Uninett logo" type="image/svg+xml"></a>
             </div>
-            <div class="navbar-department">
-                <div class="department">Dataporten</div>
-            </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                 </ul>
@@ -51,8 +49,7 @@
             <div class="col-lg-12">
                 <div class="footer-uninett">
                     <div class="footer-content-uninett">
-                            <div class="footer-logo"> <img src="${request.static_url('himlar_dp_prep:uninett-theme/images/Uninett_pil_rod.svg')}" alt="Uninett logo" type="image/svg+xml"></div>
-                            <div class="footer-uninett-department">UNINETT AS 2020</div>
+                            
                     </div>
                     <div class="clearfix"></div>
                 </div>
