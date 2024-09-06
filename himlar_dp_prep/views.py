@@ -24,22 +24,22 @@ class NoEmailException(Exception):
 
 class ProvisionerClient(object):
     def __init__(self, request):
-	self.request = request
-	self.settings = request.registry.settings
-	if self.checkConnection():
-	    pass
+        self.request = request
+        self.settings = request.registry.settings
+        if self.checkConnection():
+            pass
 
     def checkConnection(self):
-	host = self.settings.get('mq_host') 
-	port = 5672
-	addr = socket.gethostbyname(host)
-	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	result = sock.connect_ex((addr, port))
-	if result != 0:
-	    print "Port to MQ is closed."
-	    raise BeRightBackException("Our services are temporarily unavailable. Please try again later!")
+        host = self.settings.get('mq_host')
+        port = 5672
+        addr = socket.gethostbyname(host)
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        result = sock.connect_ex((addr, port))
+        if result != 0:
+            print("Port to MQ is closed.")
+            raise BeRightBackException("Our services are temporarily unavailable. Please try again later!")
             return False
-	return True
+        return True
 
     def provision(self, user):
         keystone_url = self.settings.get('keystone_url', '')
@@ -115,11 +115,11 @@ class ProvisionerClient(object):
         was_provisioned = prov.is_provisioned(user.email)
         horizon_url = self.settings.get('horizon_url', '')
         tpl = '{}/dashboard/auth/login/'
-        api_pw = prov.reset(user.email) 
+        api_pw = prov.reset(user.email)
         res = dict(api_user_name=user.email,
-		api_pw=api_pw, 
-		dashboard_url=tpl.format(horizon_url),
-		was_provisioned=was_provisioned)
+            api_pw=api_pw,
+            dashboard_url=tpl.format(horizon_url),
+            was_provisioned=was_provisioned)
         return res
 
     @view_config(route_name='reset', renderer='templates/reset.mak')
@@ -138,7 +138,7 @@ class ProvisionerClient(object):
         else:
             log.debug('reset_view - login not complete')
             return response
-	
+
     def reset_complete(self, result):
         if result.error:
             raise LoginFailedException(result.error.message)
@@ -150,7 +150,7 @@ class ProvisionerClient(object):
             result.user.update()
         if not (result.user.email and len(result.user.email) > 0):
             raise NoEmailException()
-	if self.checkConnection():
+        if self.checkConnection():
             return self.reset(result.user)
 
     def login_complete(self, result):
@@ -164,7 +164,7 @@ class ProvisionerClient(object):
             result.user.update()
         if not (result.user.email and len(result.user.email) > 0):
             raise NoEmailException()
-	if self.checkConnection():
+        if self.checkConnection():
             return self.provision(result.user)
 
     @view_config(route_name='login', renderer='templates/loggedin.mak')

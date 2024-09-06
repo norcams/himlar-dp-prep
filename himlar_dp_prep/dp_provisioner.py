@@ -26,7 +26,7 @@ def make_password():
 
 class DpProvisioner(object):
     def __init__(self, config):
-	self.config = config
+        self.config = config
         self.member_role_name = config['member_role_name']
         self.with_local_user = config.get('with_local_user')
         self.api_pw = None
@@ -47,18 +47,18 @@ class DpProvisioner(object):
             raise ValueError("Expecting unique '{}' domain".format(dp_domain_name))
 
     def get_user(self, user_id):
-	api_users = self.ks.users.list(domain=self.domain, name=api_user_name(user_id))
-	try:
-	    if api_users:
-		for user in api_users:
-	    	    self.ks.users.get(user.id)
+        api_users = self.ks.users.list(domain=self.domain, name=api_user_name(user_id))
+        try:
+            if api_users:
+                for user in api_users:
+                    self.ks.users.get(user.id)
                     return user
         except:
-	    log.info('User %s not found!', api_users)
+            log.info('User %s not found!', api_users)
 
     def is_provisioned(self, user_id, user_type='api'):
         user = self.get_user(user_id)
-	try:
+        try:
             if user:
               if hasattr(user, 'type') and user.type == user_type:
                 log.info('User %s is already provisioned!', user.name)
@@ -66,8 +66,8 @@ class DpProvisioner(object):
               # User found but type missing: we guess this is still ok
               log.info('User %s found, but missing type = api!', user.name)
               return True
-	except:
-	    log.info('User %s not found!', user)
+        except:
+            log.info('User %s not found!', user)
 
     def provision(self, user_id):
         api_name = api_user_name(user_id)
@@ -78,12 +78,12 @@ class DpProvisioner(object):
                 'email': user_id,
                 'password': api_pw
             }
-	    try:
-	        self.rmq = MQclient(self.config)
-		self.rmq.push(data=data, queue='access')
-		return dict(api_user_name=api_name, api_pw=api_pw)
-	    except:
-	        raise exc.HTTPInternalServerError("HTTP error occurred during provision process.")
+            try:
+                self.rmq = MQclient(self.config)
+                self.rmq.push(data=data, queue='access')
+                return dict(api_user_name=api_name, api_pw=api_pw)
+            except:
+                raise exc.HTTPInternalServerError("HTTP error occurred during provision process.")
 
     def reset(self, user_id):
         api_name = api_user_name(user_id)
@@ -95,12 +95,12 @@ class DpProvisioner(object):
                 'email': user_id,
                 'password': api_pw
             }
-	try:
-	    self.rmq = MQclient(self.config)
+        try:
+            self.rmq = MQclient(self.config)
             if self.is_provisioned(user_id):
                 self.rmq.push(data=data, queue='access')
                 return api_pw
-	except:
+        except:
             raise exc.HTTPInternalServerError("HTTP error occurred during reset process.")
 
 if __name__ == '__main__':
