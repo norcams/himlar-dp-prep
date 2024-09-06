@@ -1,10 +1,9 @@
 <%inherit file="main.mak"/>
 <div class="row uninett-color-white uninett-whole-row uninett-padded">
-  <h2>NREC via Dataporten</h2>
+  <h2>Sign up via FEIDE</h2>
   <div> NREC – Norwegian Research and Education Cloud is a collaborative project between
-  <a href="https://www.uib.no">Univesity of Bergen</a>,
-  <a href="https://www.uio.no>Univesity of Oslo">University of Oslo</a> and
-  <a href="https://www.uninett.no">UNINETT</a>.
+  <a href="https://www.uib.no">Univesity of Bergen</a> and
+  <a href="https://www.uio.no>Univesity of Oslo">University of Oslo</a>.
   For more information about this service, please read our <a href="https://docs.nrec.no">documentation.</a>
   </div>
   <br/>
