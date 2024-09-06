@@ -18,7 +18,7 @@ should be the application's _/login_, and the scopes _profile_, _userid_,
 _email_ and _openid_ should be accepted.
 
 For testing and development, a client has already been registered with
-the following parameters: 
+the following parameters:
 <dl>
 <dt>Client ID<dt>
 <dd><em>1375546d-7476-4ed7-a61a-92fd841f36a2</em></dd>
@@ -91,7 +91,7 @@ or
 
 To run it as a standalone web server:
 
-    pserve --reload developent.ini
+    pserve --reload development.ini
 
 or
 
