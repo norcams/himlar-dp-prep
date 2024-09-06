@@ -9,15 +9,15 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
-    'funcsigs==1.0.0',
+    'funcsigs',
     'pyramid',
     'pyramid_mako',
 #    'pyramid_debugtoolbar',
     'authomatic',
-    'python-keystoneclient==3.10.0',
+    'python-keystoneclient==5.0.1',
     'waitress',
     'grampg',
-    'pika==0.11.2',
+    'pika',
     ]
 
 setup(name='himlar_dp_prep',
