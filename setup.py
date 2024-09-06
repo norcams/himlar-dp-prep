@@ -13,7 +13,7 @@ requires = [
     'pyramid',
     'pyramid_mako',
 #    'pyramid_debugtoolbar',
-    'authomatic',
+#    'authomatic',
     'python-keystoneclient==5.0.1',
     'waitress',
     'grampg',
@@ -37,7 +37,7 @@ setup(name='himlar_dp_prep',
       packages=find_packages(),
       include_package_data=True,
       dependency_links = [
-          'http://github.com/jhellan/authomatic/tarball/master#egg=authomatic-0.1.0.uninett2'
+          'http://github.com/norcams/authomatic/tarball/nrec#egg=authomatic-nrec/1.3.0'
       ],
       zip_safe=False,
       install_requires=requires,
