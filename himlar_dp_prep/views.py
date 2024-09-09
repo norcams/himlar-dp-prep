@@ -78,8 +78,11 @@ class ProvisionerClient(object):
                     dashboard_url=tpl.format(horizon_url),
                     was_provisioned=was_provisioned)
         if not was_provisioned:
+            log.debug(f'provision user {user.email}')
             prov_result = prov.provision(user.email)
             res.update(prov_result)
+        else:
+            log.debug(f'user was already provisioned {user.email}')
         return res
 
     def reset(self, user):
@@ -155,16 +158,21 @@ class ProvisionerClient(object):
 
     def login_complete(self, result):
         if result.error:
+            self.info(f'login failed: {result.error.message}')
             raise LoginFailedException(result.error.message)
         elif not result.user:
+            self.info(f'no user fount')
             raise NoUserException()
         elif not (result.user.name and result.user.email):
             # OAuth 2.0 provides only limited user data on login,
             # We need to update the user to get more info.
+            log.debug('update user to get more info')
             result.user.update()
         if not (result.user.email and len(result.user.email) > 0):
+            log.warning('could not find user email')
             raise NoEmailException()
         if self.checkConnection():
+            log.debug(f'ready to provision user {result.user.email}')
             return self.provision(result.user)
 
     @view_config(route_name='login', renderer='templates/loggedin.mak')
@@ -178,10 +186,11 @@ class ProvisionerClient(object):
         result = authomatic.login(WebObAdapter(self.request, response), 'dp')
         if result:
             # The login procedure is over
-            log.debug('login_view - login complete')
+            log.debug('login_view: login complete')
             return self.login_complete(result)
+
         else:
-            log.debug('login_view - login not complete')
+            log.debug('login_view: login not complete')
             return response
 
 @view_config(route_name='home', renderer='templates/home.mak')
