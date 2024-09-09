@@ -10,5 +10,5 @@
   <a href="http://docs.nrec.no/en/latest/terms-of-service.html" target="blank">
   Terms of Service</a>.</p>
 % endif
- <p>You may be sent back to Dataporten again.</p>
+ <p>You may be sent back to FEIDE again.</p>
 </div>

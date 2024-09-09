@@ -2,9 +2,9 @@
 <div class="row uninett-color-white uninett-whole-row uninett-padded">
   <h2>${user.name}</h2>
 % if was_provisioned:
-  <p>NREC was already prepared for Dataporten</p>
+  <p>NREC was already prepared with FEIDE</p>
 % else:
-  <p>NREC prepared for Dataporten</p>
+  <p>NREC prepared with FEIDE</p>
 % endif
 % if api_pw:
   <h3>API access</h3>
@@ -22,5 +22,5 @@
   <a style="color:#eb212e" href="/reset" class="btn btn-underline">Reset API password</a>
 % endif
   <br/>
-  <p>You may be sent back to Dataporten again.</p>
+  <p>You may be sent back to FEIDE again.</p>
 </div>
