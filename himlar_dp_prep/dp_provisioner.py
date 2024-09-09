@@ -83,8 +83,8 @@ class DpProvisioner(object):
                 self.rmq.push(data=data, queue='access')
                 return dict(api_user_name=api_name, api_pw=api_pw)
             except Exception as e:
-                log.error(e)
-                raise exc.HTTPInternalServerError("HTTP error occurred during provision process.")
+                log.error(f'could not push data to mq: {e}')
+                raise exc.HTTPInternalServerError("MQ error occurred during provision process.")
 
     def reset(self, user_id):
         api_name = api_user_name(user_id)
