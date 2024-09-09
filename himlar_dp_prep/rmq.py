@@ -23,8 +23,7 @@ class MQclient(object):
                 blocked_connection_timeout=30)
             self.connection = pika.BlockingConnection(parameters)
         except Exception as e:
-            self.log.error(e)
-            raise exc.HTTPInternalServerError("HTTP error occurred.")
+            self.log.error(f'connection to mq server failed: {e}')
 
     def get_channel(self, queue):
         channel = self.connection.channel()
