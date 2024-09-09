@@ -16,7 +16,6 @@ class MQclient(object):
                 host=self.config['mq_host'],
                 virtual_host=self.config['mq_vhost'],
                 credentials=credentials,
-                heartbeat_interval=10,
                 connection_attempts=2,
                 retry_delay=5,
                 socket_timeout=10,
