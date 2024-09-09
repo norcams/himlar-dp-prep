@@ -1,6 +1,6 @@
 <%inherit file="main.mak"/>
 <div class="row uninett-color-white uninett-whole-row uninett-padded">
-  <h2>NREC via Dataporten</h2>
+  <h2>NREC via FEIDE</h2>
   <br/>
 % if was_provisioned:
   <h3>Reset API password</h3>
@@ -23,5 +23,5 @@
   </a><br>
 % endif
   <br/>
-  <p>You may be sent back to Dataporten again.</p>
+  <p>You may be sent back to FEIDE again.</p>
 </div>
