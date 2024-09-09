@@ -72,7 +72,7 @@ class DpProvisioner(object):
     def provision(self, user_id):
         api_name = api_user_name(user_id)
         if self.with_local_user:
-            log.info(f'provision user {user_id}')
+            log.info(f'provision user {api_name}')
             api_pw = make_password()
             data = {
                 'action': 'provision',
@@ -90,7 +90,7 @@ class DpProvisioner(object):
     def reset(self, user_id):
         api_name = api_user_name(user_id)
         if self.with_local_user:
-            log.info(f'reset pw for user {user_id}')
+            log.info(f'reset pw for user {api_name}')
             api_pw = make_password()
             data = {
                 'action': 'reset_password',
