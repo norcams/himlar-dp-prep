@@ -4,9 +4,11 @@ import pyramid.httpexceptions as exc
 
 class MQclient(object):
 
-    def __init__(self, config):
+    def __init__(self, config, logger):
+        self.log = logger
         self.config = config
         try:
+            self.log.info('connect to mq...')
             credentials = pika.PlainCredentials(
                 username=self.config['mq_username'],
                 password=self.config['mq_password'])
@@ -20,7 +22,8 @@ class MQclient(object):
                 socket_timeout=10,
                 blocked_connection_timeout=30)
             self.connection = pika.BlockingConnection(parameters)
-        except:
+        except Exception as e:
+            self.log.error(e)
             raise exc.HTTPInternalServerError("HTTP error occurred.")
 
     def get_channel(self, queue):
@@ -29,6 +32,7 @@ class MQclient(object):
         return channel
 
     def close_connection(self):
+        self.log.info('close mq connection')
         self.connection.close()
 
     def push(self, data, queue='access'):
@@ -41,5 +45,5 @@ class MQclient(object):
                                        properties=pika.BasicProperties(
                                        delivery_mode=2))
         if result:
-            print ('New message added to queue: ', queue)
+            self.log.info('New message added to queue: ', queue)
             self.close_connection()
