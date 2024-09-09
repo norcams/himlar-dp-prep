@@ -98,7 +98,7 @@ class DpProvisioner(object):
                 'password': api_pw
             }
         try:
-            self.rmq = MQclient(self.config)
+            self.rmq = MQclient(self.config, log)
             if self.is_provisioned(user_id):
                 self.rmq.push(data=data, queue='access')
                 return api_pw
