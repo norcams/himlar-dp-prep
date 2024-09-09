@@ -72,6 +72,7 @@ class DpProvisioner(object):
     def provision(self, user_id):
         api_name = api_user_name(user_id)
         if self.with_local_user:
+            log.info(f'provision user {user_id}')
             api_pw = make_password()
             data = {
                 'action': 'provision',
@@ -89,8 +90,8 @@ class DpProvisioner(object):
     def reset(self, user_id):
         api_name = api_user_name(user_id)
         if self.with_local_user:
+            log.info(f'reset pw for user {user_id}')
             api_pw = make_password()
-            log.info("Reset password for: %s", user_id)
             data = {
                 'action': 'reset_password',
                 'email': user_id,
@@ -101,8 +102,9 @@ class DpProvisioner(object):
             if self.is_provisioned(user_id):
                 self.rmq.push(data=data, queue='access')
                 return api_pw
-        except:
-            raise exc.HTTPInternalServerError("HTTP error occurred during reset process.")
+        except Exception as e:
+            log.error(f'could not push data to mq: {e}')
+            raise exc.HTTPInternalServerError("MQ error occurred during reset process.")
 
 if __name__ == '__main__':
     DESCRIPTION = "Dataporten provisioner for Openstack"
